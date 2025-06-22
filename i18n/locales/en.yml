@@ -1,0 +1,117 @@
+# i18n/locales/en.yml
+main_menu:
+  greeting: "Hello, {user_name}! Welcome to the Ultimate Promotion Bot."
+  buttons:
+    boosting: "🚀 Boosting"
+    my_account: "👤 My Account"
+    wallet: "💰 Wallet"
+    offers: "💡 Special Offers"
+
+language_selection:
+  prompt: "Please choose your language:"
+  selected: "Language set to English."
+
+initial_channel_setup:
+  prompt: "Please send me a link to your Telegram group or channel where you are an owner."
+  invalid_link: "Invalid link format. Please send a full link like https://t.me/your_channel or @your_channel."
+  not_owner: "You are not the owner or administrator of this channel/group, or I don't have enough permissions there. Make sure I am an administrator with full rights (Invite Users, Post Messages) and you are the owner."
+  bot_not_admin_or_permissions: "I am not an administrator in this channel/group or I don't have enough permissions (Invite Users, Post Messages). Please grant me the necessary rights."
+  not_enough_subscribers: "The channel/group must have at least 100 subscribers to proceed. Your channel has {count}."
+  success: "Great! Channel '{channel_title}' added successfully. You can now use boosting features."
+  channel_already_added: "This channel has already been added to your account."
+  error_checking_channel: "An error occurred while checking the channel. Please ensure the link is correct and try again."
+
+common:
+  back: "⬅️ Back"
+  back_to_main: "🏠 Main Menu"
+  cancel: "❌ Cancel"
+  success: "✅ Success!"
+
+error:
+  default: "An unexpected error occurred. Please try again later."
+  not_implemented: "This feature is not yet implemented."
+  access_denied: "Access denied."
+  not_enough_credits: "Insufficient credits. Your balance: {balance} credits. Cost: {cost} credits."
+
+boosting_menu:
+  active_orders: "📊 Active Boosts"
+  order_history: "📜 History"
+  order_new: "🚀 New Boost"
+  my_channels: "💬 My Channels"
+  choose_type: "Select boost type:"
+  normal_type: "Normal (1 credit = 1 sub)"
+  turbo_type: "Turbo (+100% cost, x6 speed)"
+  channel_choose: "Choose a channel for boosting:"
+  enter_subscribers: "Enter the number of subscribers you want (min 100):"
+  confirm_order: "Confirm your order:\nChannel: {channel_title}\nType: {order_type}\nSubscribers: {subscribers}\nCost: {cost} credits"
+  order_launched: "Your order has been successfully launched! Order ID: {order_id}"
+  run_order: "Launch Order"
+  cancel_order: "Cancel"
+  invalid_sub_amount: "Please enter a valid number of subscribers (minimum 100, whole number)."
+
+my_account_menu:
+  balance: "Balance: {balance} credits"
+  last_activity: "Last activity: {last_activity}"
+  registration_date: "Registration date: {reg_date}"
+  pro_status: "PRO Status: {status}"
+  pro_expires: " (expires {date})"
+  user_info: "👤 Your Account Info:\nID: {id}\nUsername: @{username}\n{first_name} {last_name}\nLang: {lang_code}\nRegistered: {registered_at}\nLast Activity: {last_activity_at}\nBalance: {balance} credits\nPRO Status: {pro_status_text}"
+  promocode: "🎁 Promo Codes"
+  invite_friends: "🤝 Invite Friends"
+  enter_promocode: "Please enter your promo code:"
+  promocode_invalid: "Invalid or expired promo code, or already used."
+  promocode_applied: "Promo code '{code}' applied! {credits} credits added to your balance."
+  promocode_fraud: "Warning: Multi-account attempt detected. This promo code cannot be used by you."
+  referral_link: "Your referral link: {link}"
+  referral_stats: "Invited: {invited_count}\nUsers paid: {paid_count}\nEarned credits: {earned_credits}"
+
+wallet_menu:
+  buy_credits: "💳 Buy Credits"
+  earn_credits: "💰 Earn Credits"
+  current_balance: "Current Balance: {balance} credits"
+  select_amount_to_buy: "Choose amount:"
+  payment_info: "To pay {amount} USD ({credits} credits):\nCryptomus Invoice UUID: {uuid}\n\nScan QR or send funds to:\nAddress: `{address}`\nNetwork: **{currency}**\n\nExpiration: {expires_at}\n\n**IMPORTANT:** Minimum top-up is 100 credits ({min_usd} USDT)."
+  payment_check_status: "Checking payment status..."
+  payment_completed: "Payment successfully received! Your balance has been updated."
+  payment_pending: "Payment still pending. Please wait for network confirmations."
+  payment_failed: "Payment failed or expired. Please try again."
+  payment_address_not_available: "Payment details unavailable right now. Please try again later."
+  earn_credits_ad_info: "To earn credits by placing ads, please contact admin @bezabraze. You can earn from 15 to 200 credits/week based on your channel's size."
+
+offers_menu:
+  become_pro: "⭐ Become PRO"
+  franchise: "💼 Franchise"
+  pro_info: "Become PRO:\n- Access up to 3 channels\n- Deep AI-analysis of your channel\n- Growth plan generation\n\nPrice: 20$/month or 189$ one-time."
+  franchise_info: "Franchise Packages:\n1. Light - 750€: 3 channels, basic features, 2.5 months ROI.\n2. Beta - 1300€: 7 channels, extended API, @bezabraze support.\n3. Full - 3444€: 15 channels, rebranding, own accounts, automation, custom marketing.\n\nAll franchises use CENTRAL SERVER accounts. Cost: 0.4€/month/account (cost ~0.15€). Payment delay >10 days = franchise cancellation."
+
+admin_panel:
+  access_granted: "Admin access granted!"
+  access_denied: "You are not an admin."
+  commands_list: "Admin Commands:\n/ban [id|@username]\n/unban [id|@username]\n/check [id|@username]\n/set_balance [id] [amount]\n/set_slots [id] [amount]\n/promo\n/add_promo [name] [credits] [activations] [YYYY-MM-DD] [one_per_ip_serial:F|T]\n/del_promo [name]\n/broadcast\n/account_stats\n/reports"
+  user_not_found: "User not found."
+  user_banned: "User {id} (@{username}) has been banned."
+  user_unbanned: "User {id} (@{username}) has been unbanned and warnings reset."
+  user_info_msg: "User Info (ID: {id}):\nUsername: @{username}\nName: {first_name} {last_name}\nBalance: {balance} credits\nChannels: {num_channels} (max {max_slots})\nIs Admin: {is_admin}\nIs PRO: {is_pro}\nWarnings: {warnings}\nBanned: {is_banned}"
+  balance_updated: "Balance for user {id} updated to {balance} credits."
+  slots_updated: "Max channel slots for user {id} updated to {slots}."
+  promo_enter_name: "Enter promo code name (e.g., START):"
+  promo_enter_credits: "Enter credits reward:"
+  promo_enter_activations: "Enter max activations (leave blank for unlimited):"
+  promo_enter_expires: "Enter expiration date (YYYY-MM-DD, leave blank for no expiration):"
+  promo_enter_ip_serial: "Is this promo 'one per IP/Serial'? (True/False):"
+  promo_added: "Promo code '{name}' added successfully!"
+  promo_exists: "Promo code '{name}' already exists."
+  promo_deleted: "Promo code '{name}' deactivated."
+  promo_not_found: "Promo code '{name}' not found."
+  broadcast_prompt: "Enter the message to broadcast to all users (text, photo, etc.). Or type /cancel_broadcast to cancel."
+  broadcast_sending: "Sending broadcast message to {count} users..."
+  broadcast_success: "Broadcast sent successfully to {sent}/{total} users."
+  broadcast_cancelled: "Broadcast cancelled."
+  account_stats: "Booster Accounts Statistics:\nActive: {active_count}\nIdle: {idle_count}\nBanned: {banned_count}\nAvg Daily Subs/Acc: {avg_speed:.2f}"
+  reports_menu:
+    financial: "Financial Report"
+    orders: "Orders Report"
+    topups: "Top-ups Report"
+    financial_report_msg: "Financial Report:\nTotal Revenue (USD): {total_revenue_usd:.2f}\nTotal Credits Sold: {total_credits_sold}\nCompleted Transactions: {completed_transactions}\nAverage Check (USD): {average_check_usd:.2f}"
+    orders_report_msg: "Orders Report (showing first 10):\n{orders_list}"
+    topups_report_msg: "Top-ups Report (showing first 10):\n{topups_list}"
