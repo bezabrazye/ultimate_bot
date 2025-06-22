@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Bot Info Update</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+        p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #0088cc;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #007bb5;
+        }
+        #loading {
+            margin-top: 20px;
+            font-style: italic;
+            color: #666;
+        }
+        .error {
+            color: red;
+            margin-top: 15px;
+        }
+        .success {
+            color: green;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Update Your Account Information</h1>
+        <p>This mini-application helps us to ensure the security of your account and prevent multi-accounting. By proceeding, your IP address and a unique session identifier will be securely recorded and linked to your Telegram account.</p>
+        <p>We use this data solely for fraud prevention and to improve the quality of our service. Your privacy is important to us.</p>
+        <button id="proceedButton">Proceed & Verify</button>
+        <div id="loading" style="display: none;">Processing...</div>
+        <div id="statusMessage" class="error" style="display: none;"></div>
+    </div>
+
+    <script>
+        const proceedButton = document.getElementById('proceedButton');
+        const loadingDiv = document.getElementById('loading');
+        const statusMessageDiv = document.getElementById('statusMessage');
+
+        // Replace with your actual WebApp API URL from settings.WEBAPP_API_URL
+        const WEBAPP_API_ENDPOINT = "http://localhost:8000/api/v1/webapp/auth"; 
+        // This will be dynamic based on your .env settings eventually. 
+        // For actual deployment, you might inject this from the backend template.
+
+        Telegram.WebApp.ready();
+
+        proceedButton.addEventListener('click', async () => {
+            proceedButton.style.display = 'none';
+            loadingDiv.style.display = 'block';
+            statusMessageDiv.style.display = 'none';
+
+            if (!Telegram.WebApp.initData) {
+                displayStatus('Error: Telegram WebApp initData is missing. Please open from within Telegram.', true);
+                return;
+            }
+
+            try {
+                const response = await fetch(WEBAPP_API_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ initData: Telegram.WebApp.initData })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    displayStatus('Success: Your information has been updated!', false);
+                    Telegram.WebApp.sendData(JSON.stringify({ status: 'success', user_id: Telegram.WebApp.initDataUnsafe?.user?.id }));
+                    setTimeout(() => {
+                        Telegram.WebApp.close();
+                    }, 500); // Close WebApp after a short delay
+                } else {
+                    displayStatus(`Error: ${data.detail || 'An unknown error occurred.'}`, true);
+                    Telegram.WebApp.sendData(JSON.stringify({ status: 'error', message: data.detail }));
+                }
+            } catch (error) {
+                displayStatus(`Network Error: ${error.message}. Please try again later.`, true);
+                Telegram.WebApp.sendData(JSON.stringify({ status: 'network_error', message: error.message }));
+            } finally {
+                loadingDiv.style.display = 'none';
+            }
+        });
+
+        function displayStatus(message, isError) {
+            statusMessageDiv.textContent = message;
+            statusMessageDiv.className = isError ? 'error' : 'success';
+            statusMessageDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
