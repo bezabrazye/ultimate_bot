@@ -1,0 +1,9 @@
+git+https://github.com/aiogram/i18n.git@main#egg=aiogram-i18n
+motor==3.3.2
+pymongo==4.7.2
+pydantic==2.7.1
+pydantic-settings==2.2.1
+httpx==0.27.0
+APScheduler==3.10.4
+python-dotenv==1.0.1
+PyYAML==6.0.1
